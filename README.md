@@ -23,3 +23,41 @@ mysql -u root -p < sql/criar_usuario_bot.sql
 ```
 
 Esse usuário terá apenas `SELECT` sobre a base de demonstração. Em instalação MySQL remota, ajuste o host do usuário e restrinja a rede; o exemplo utiliza `localhost`.
+
+## Instalação Linux/macOS
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+ollama pull qwen2.5:3b
+```
+
+No Windows PowerShell:
+
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+Copy-Item .env.example .env
+ollama pull qwen2.5:3b
+```
+
+Edite `.env`: inclua a senha do banco, o nome do modelo instalado e o endereço do Ollama. `pypdf` é incluído por compatibilidade com a experiência anterior, mas o projeto atual não consulta PDFs.
+
+## Teste sem WhatsApp
+
+Com Ollama funcionando (`ollama serve`, se necessário) e o MySQL iniciado:
+
+```bash
+python terminal.py
+```
+
+Perguntas sugeridas:
+- Quantos clientes cadastrados?
+- Liste cinco SUVs.
+- Quanto foi a receita contratada em outubro de 2026?
+- Quais os cinco veículos mais alugados?
+- Quais os custos mais altos de manutenção?
+- Quais veículos parecem disponíveis entre 2026-11-12 e 2026-11-15?
