@@ -61,3 +61,25 @@ Perguntas sugeridas:
 - Quais os cinco veículos mais alugados?
 - Quais os custos mais altos de manutenção?
 - Quais veículos parecem disponíveis entre 2026-11-12 e 2026-11-15?
+
+## WhatsApp
+
+```bash
+python whatsapp.py
+```
+
+Na primeira conexão, escaneie o QR Code no WhatsApp > Dispositivos conectados > Conectar dispositivo. A sessão fica armazenada localmente. O bot ignora grupos por padrão (`ALLOW_GROUPS=false`) e mensagens sem texto. Não compartilhe o banco de sessão.
+
+## Testes
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+## Limitações
+
+- Somente leitura: não cadastra clientes, não altera locações, não confirma reservas nem recebe pagamentos.
+- Relatórios administrativos são bloqueados por padrão no WhatsApp. Para testá-los, inclua os JIDs exatos dos remetentes autorizados em `ADMIN_JIDS`, separados por vírgula; o formato de JID depende da versão do Neonize. Ainda é um exemplo didático e não substitui autenticação forte nem controles de privacidade. Nunca conecte dados pessoais reais a um número público sem revisão de segurança.
+- Disponibilidade é aproximação baseada nos registros existentes e no status atual, não é garantia de reserva ou preço final.
+- A classificação/extração de parâmetros depende da qualidade do modelo Ollama; quando dados estiverem faltando, o bot pede esclarecimento.
+- A execução foi validada estaticamente e com testes unitários simulados; integração real exige Ollama, MySQL e login WhatsApp em execução no computador do usuário.
